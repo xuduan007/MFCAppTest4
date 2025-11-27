@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -6,6 +6,8 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include "TimeDialog.h"
+#include "StatisticsDialog.h"
 #include "afxdialogex.h"
 #include <afxtempl.h>
 
@@ -68,6 +70,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON_MODAL, &CMFCApplication2Dlg::OnBnClickedButtonModal)
+	ON_BN_CLICKED(IDC_BUTTON_NONMODAL, &CMFCApplication2Dlg::OnBnClickedButtonNonmodal)
+	ON_BN_CLICKED(IDC_BUTTON_STATISTICS, &CMFCApplication2Dlg::OnBnClickedButtonStatistics)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -184,6 +189,9 @@ void CMFCApplication2Dlg::OnBnClickedOk()
 	CDialogEx::OnOK();
 }
 
+// 初始化全局统计变量
+int CMFCApplication2Dlg::m_nFiveMultipleCount = 0;
+
 void CMFCApplication2Dlg::OnBnClickedButton1()
 {
 	/*
@@ -193,5 +201,28 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
 	*/
 		
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonModal()
+{
+	// 弹出模态对话框
+	CTimeDialog dlgModal(this);
+	dlgModal.DoModal();
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonNonmodal()
+{
+	// 弹出非模态对话框
+	CTimeDialog* pDlgNonmodal = new CTimeDialog(this);
+	pDlgNonmodal->Create(IDD_DIALOG_TIME, this);
+	pDlgNonmodal->ShowWindow(SW_SHOW);
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonStatistics()
+{
+	// 弹出统计对话框
+	CStatisticsDialog* pDlgStatistics = new CStatisticsDialog(this);
+	pDlgStatistics->Create(IDD_DIALOG_STATISTICS, this);
+	pDlgStatistics->ShowWindow(SW_SHOW);
 }
 
