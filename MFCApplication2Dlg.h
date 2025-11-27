@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.h: 头文件
 //
 
@@ -35,4 +35,11 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton1();
 	void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnBnClickedButtonModal();
+	afx_msg void OnBnClickedButtonNonmodal();
+	afx_msg void OnBnClickedButtonStatistics();
+
+public:
+	// 全局统计变量，用于记录5倍时间到达次数
+	static int m_nFiveMultipleCount;
 };
