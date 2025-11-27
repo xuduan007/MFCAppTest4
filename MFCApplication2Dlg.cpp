@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -6,6 +6,8 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include "TimeDialog.h"
+#include "CountDialog.h"
 #include "afxdialogex.h"
 #include <afxtempl.h>
 
@@ -55,6 +57,26 @@ CMFCApplication2Dlg::CMFCApplication2Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_MFCAPPLICATION2_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_pNonModalTimeDlg = nullptr;
+	m_pCountDlg = nullptr;
+}
+
+CMFCApplication2Dlg::~CMFCApplication2Dlg()
+{
+	// 销毁非模态对话框
+	if (m_pNonModalTimeDlg != nullptr && m_pNonModalTimeDlg->GetSafeHwnd() != nullptr)
+	{
+		m_pNonModalTimeDlg->DestroyWindow();
+		delete m_pNonModalTimeDlg;
+		m_pNonModalTimeDlg = nullptr;
+	}
+
+	if (m_pCountDlg != nullptr && m_pCountDlg->GetSafeHwnd() != nullptr)
+{
+	m_pCountDlg->DestroyWindow();
+	delete m_pCountDlg;
+	m_pCountDlg = nullptr;
+}
 }
 
 void CMFCApplication2Dlg::DoDataExchange(CDataExchange* pDX)
@@ -68,7 +90,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
-	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_BUTTON_MODAL, &CMFCApplication2Dlg::OnBnClickedButtonModal)
+	ON_BN_CLICKED(IDC_BUTTON_NONMODAL, &CMFCApplication2Dlg::OnBnClickedButtonNonmodal)
+	ON_BN_CLICKED(IDC_BUTTON_COUNT, &CMFCApplication2Dlg::OnBnClickedButtonCount)
 END_MESSAGE_MAP()
 
 
@@ -191,7 +215,44 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	CWnd* wnd = GetDlgItem(IDC_SHOW);
 	wnd->GetWindowText(text);
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
-	*/
-		
+	*/	
+	
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonModal()
+{
+	// 弹出模态时间对话框
+	CTimeDialog dlg(this);
+	dlg.DoModal();
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonNonmodal()
+{
+	// 弹出非模态时间对话框
+	if (m_pNonModalTimeDlg == nullptr || m_pNonModalTimeDlg->GetSafeHwnd() == nullptr)
+	{
+		m_pNonModalTimeDlg = new CTimeDialog(this);
+		m_pNonModalTimeDlg->Create(IDD_DIALOG_TIME, this);
+		m_pNonModalTimeDlg->ShowWindow(SW_SHOW);
+	}
+}
+
+void CMFCApplication2Dlg::OnBnClickedButtonCount()
+{
+	// 弹出非模态计数对话框
+	if (m_pCountDlg == nullptr || m_pCountDlg->GetSafeHwnd() == nullptr)
+	{
+		m_pCountDlg = new CCountDialog(this);
+		m_pCountDlg->Create(IDD_DIALOG_COUNT, this);
+		m_pCountDlg->ShowWindow(SW_SHOW);
+	}
+	else
+	{
+		// 如果对话框已经存在，更新计数显示
+		int nCount = CTimeDialog::GetCount();
+		CString strCount;
+		strCount.Format(_T("%d次"), nCount);
+		m_pCountDlg->SetDlgItemText(IDC_STATIC_COUNT, strCount);
+	}
 }
 
