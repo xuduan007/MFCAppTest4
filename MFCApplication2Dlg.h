@@ -1,8 +1,9 @@
-﻿
+
 // MFCApplication2Dlg.h: 头文件
 //
 
 #pragma once
+#include "TimeDialog.h"
 
 
 // CMFCApplication2Dlg 对话框
@@ -35,4 +36,8 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton1();
 	void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnBnClickedModalButton();
+	afx_msg void OnBnClickedNonModalButton();
+	afx_msg void OnBnClickedCountButton();
+	CTimeDialog* m_pNonModalDialog;
 };
