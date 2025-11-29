@@ -3,6 +3,9 @@
 // 供 MFCApplication2.rc 使用
 //
 #define IDOK2                           4
+#define IDC_STATIC                        -1
+#define IDD_CUSTOM_MESSAGE_BOX            101
+#define IDC_MESSAGE_TEXT                  102
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
@@ -12,6 +15,16 @@
 #define IDC_SHOW                        1000
 #define IDC_BUTTON1                     1001
 #define IDC_BUTTON2                     1002
+#define IDC_BUTTON3                     1003
+#define IDC_BUTTON4                     1004
+#define IDD_CAPTCHA_DIALOG              103
+#define IDC_CAPTCHA_DISPLAY             1005
+#define IDC_CAPTCHA_INPUT               1006
+#define IDC_CLOSE_CAPTCHA               1007
+#define IDD_STATISTICS_DIALOG           106
+#define IDC_CORRECT_COUNT               1008
+#define IDC_WRONG_COUNT                 1009
+#define IDC_CLOSE_STATISTICS            1010
 
 // Next default values for new objects
 // 
