@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.h: 头文件
 //
 
@@ -35,4 +35,16 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton1();
 	void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnBnClickedLoginButton();
+	
+	void GenerateRandomNumber();
+	void ShowVerificationResult(BOOL bSuccess);
+	
+	// 成员变量
+	CString m_strRandomNumber;
+	int m_nCorrectCount;
+	int m_nIncorrectCount;
+	BOOL m_bTimerRunning;
+};
 };

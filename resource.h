@@ -1,4 +1,4 @@
-﻿//{{NO_DEPENDENCIES}}
+//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
 // 供 MFCApplication2.rc 使用
 //
@@ -7,11 +7,19 @@
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
 #define IDD_MFCAPPLICATION2_DIALOG      102
+#define IDD_VERIFICATION_DIALOG         103
 #define IDR_MAINFRAME                   128
 #define IDB_BITMAP1                     129
 #define IDC_SHOW                        1000
 #define IDC_BUTTON1                     1001
 #define IDC_BUTTON2                     1002
+#define IDC_WELCOME_IMAGE               1003
+#define IDC_RANDOM_NUMBER               1004
+#define IDC_INPUT_EDIT                  1005
+#define IDC_LOGIN_BUTTON                1006
+#define IDC_CORRECT_COUNT               1007
+#define IDC_INCORRECT_COUNT             1008
+#define IDC_STATIC_TEXT                 1009
 
 // Next default values for new objects
 // 
