@@ -12,6 +12,14 @@
 #define IDC_SHOW                        1000
 #define IDC_BUTTON1                     1001
 #define IDC_BUTTON2                     1002
+#define IDC_MODAL_BUTTON                1003
+#define IDC_NON_MODAL_BUTTON            1004
+#define IDC_COUNT_BUTTON                1005
+#define IDD_TIME_DIALOG                 103
+#define IDD_COUNT_DIALOG                104
+#define IDC_TIME_STATIC                 1006
+#define IDC_CLOSE_BUTTON                1007
+#define IDC_CLOSE_BUTTON_2              1008
 
 // Next default values for new objects
 // 

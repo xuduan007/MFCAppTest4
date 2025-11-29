@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -6,6 +6,8 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include "TimeDialog.h"
+#include "CountDialog.h"
 #include "afxdialogex.h"
 #include <afxtempl.h>
 
@@ -55,6 +57,7 @@ CMFCApplication2Dlg::CMFCApplication2Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_MFCAPPLICATION2_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_pNonModalDialog = nullptr;
 }
 
 void CMFCApplication2Dlg::DoDataExchange(CDataExchange* pDX)
@@ -68,6 +71,9 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_MODAL_BUTTON, &CMFCApplication2Dlg::OnBnClickedModalButton)
+	ON_BN_CLICKED(IDC_NON_MODAL_BUTTON, &CMFCApplication2Dlg::OnBnClickedNonModalButton)
+	ON_BN_CLICKED(IDC_COUNT_BUTTON, &CMFCApplication2Dlg::OnBnClickedCountButton)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -193,5 +199,30 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
 	*/
 		
+}
+
+void CMFCApplication2Dlg::OnBnClickedModalButton()
+{
+	// 创建并显示模态时间对话框
+	CTimeDialog dlg(this);
+	dlg.DoModal();
+}
+
+void CMFCApplication2Dlg::OnBnClickedNonModalButton()
+{
+	// 如果非模态对话框不存在，则创建并显示它
+	if (m_pNonModalDialog == nullptr)
+	{
+		m_pNonModalDialog = new CTimeDialog(this);
+		m_pNonModalDialog->Create(IDD_TIME_DIALOG, this);
+	}
+	m_pNonModalDialog->ShowWindow(SW_SHOW);
+}
+
+void CMFCApplication2Dlg::OnBnClickedCountButton()
+{
+	// 创建并显示统计对话框
+	CCountDialog dlg(CTimeDialog::s_totalReminderCount, this);
+	dlg.DoModal();
 }
 
