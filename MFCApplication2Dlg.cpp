@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include "ImageFlipDlg.h"
 #include "afxdialogex.h"
 #include <afxtempl.h>
 
@@ -68,6 +69,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_IMAGE_FLIP_BUTTON, &CMFCApplication2Dlg::OnBnClickedImageFlipButton)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -193,5 +195,11 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
 	*/
 		
+}
+
+void CMFCApplication2Dlg::OnBnClickedImageFlipButton()
+{
+	CImageFlipDlg dlg;
+	dlg.DoModal();
 }
 

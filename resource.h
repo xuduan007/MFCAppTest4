@@ -1,4 +1,4 @@
-﻿//{{NO_DEPENDENCIES}}
+//{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ 生成的包含文件。
 // 供 MFCApplication2.rc 使用
 //
@@ -12,14 +12,20 @@
 #define IDC_SHOW                        1000
 #define IDC_BUTTON1                     1001
 #define IDC_BUTTON2                     1002
+#define IDC_IMAGE_FLIP_BUTTON           1003
+#define IDD_IMAGE_FLIP_DIALOG           130
+#define IDC_ORIGINAL_IMAGE               1004
+#define IDC_FLIPPED_IMAGE                1005
+#define IDC_FLIP_VERTICAL                1006
+#define IDC_FLIP_HORIZONTAL              1007
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1002
+#define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

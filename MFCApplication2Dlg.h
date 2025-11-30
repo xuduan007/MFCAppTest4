@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.h: 头文件
 //
 
@@ -34,5 +34,6 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedImageFlipButton();
 	void OnSize(UINT nType, int cx, int cy);
 };
