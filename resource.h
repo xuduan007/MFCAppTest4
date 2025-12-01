@@ -13,13 +13,22 @@
 #define IDC_BUTTON1                     1001
 #define IDC_BUTTON2                     1002
 
+// 新增资源ID定义
+#define IDD_IMAGE_PROCESS_DIALOG        130
+#define IDC_PROCESS_BUTTON              131
+#define IDC_BRIGHTNESS_SLIDER           132
+#define IDC_ORIGINAL_IMAGE              133
+#define IDC_PROCESSED_IMAGE             134
+#define IDC_PROCESS_CONTROL_BUTTON      135
+#define IDC_NEW_BUTTON                  1003
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        136
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1002
+#define _APS_NEXT_CONTROL_VALUE         1004
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

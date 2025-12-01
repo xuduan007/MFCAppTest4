@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.h: 头文件
 //
 
@@ -35,4 +35,5 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedButton1();
 	void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnBnClickedNewButton();
 };
