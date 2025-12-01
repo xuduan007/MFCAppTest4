@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include "ImageProcessDlg.h"
 #include "afxdialogex.h"
 #include <afxtempl.h>
 
@@ -68,6 +69,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMFCApplication2Dlg::OnBnClickedButton3)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -191,7 +193,14 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	CWnd* wnd = GetDlgItem(IDC_SHOW);
 	wnd->GetWindowText(text);
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
-	*/
-		
+	*/		
+}
+
+void CMFCApplication2Dlg::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 弹出图片处理对话框
+	CImageProcessDlg dlgImageProcess;
+	dlgImageProcess.DoModal();
 }
 
