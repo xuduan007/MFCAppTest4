@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2.cpp: 定义应用程序的类行为。
 //
 
@@ -6,6 +6,9 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+#include <gdiplus.h>
+using namespace Gdiplus;
+#pragma comment(lib, "gdiplus.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,6 +31,8 @@ CMFCApplication2App::CMFCApplication2App()
 
 	// TODO: 在此处添加构造代码，
 	// 将所有重要的初始化放置在 InitInstance 中
+	GdiplusStartupInput gdiplusStartupInput;
+	GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
 }
 
 
@@ -103,5 +108,11 @@ BOOL CMFCApplication2App::InitInstance()
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
 	return FALSE;
+}
+
+int CMFCApplication2App::ExitInstance()
+{
+	GdiplusShutdown(m_gdiplusToken);
+	return CWinApp::ExitInstance();
 }
 
