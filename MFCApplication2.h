@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2.h: PROJECT_NAME 应用程序的主头文件
 //
 
@@ -9,6 +9,8 @@
 #endif
 
 #include "resource.h"		// 主符号
+#include <gdiplus.h>
+using namespace Gdiplus;
 
 
 // CMFCApplication2App:
@@ -23,8 +25,11 @@ public:
 // 重写
 public:
 	virtual BOOL InitInstance();
+	virtual int ExitInstance();
 
 // 实现
+private:
+	ULONG_PTR m_gdiplusToken;
 
 	DECLARE_MESSAGE_MAP()
 };

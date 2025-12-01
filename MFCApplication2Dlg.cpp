@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2Dlg.cpp: 实现文件
 //
 
@@ -68,6 +68,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CMFCApplication2Dlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON_CONVERT, &CMFCApplication2Dlg::OnBnClickedConvertImage)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -193,5 +194,114 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	wnd->SetWindowText(text + _T("Hello, MFC!"));
 	*/
 		
+}
+
+// 图片转换对话框类
+class CImageConvertDlg : public CDialogEx
+{
+public:
+	CImageConvertDlg(CWnd* pParent = nullptr) : CDialogEx(IDD_DIALOG_CONVERT, pParent) {}
+
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);
+	DECLARE_MESSAGE_MAP()
+
+public:
+	afx_msg void OnBnClickedConvertJpg();
+	afx_msg void OnBnClickedConvertPng();
+	afx_msg void OnBnClickedCancel();
+	
+private:
+	CBitmap m_srcBitmap;
+	CBitmap m_convertedBitmap;
+	CStatic* m_pSrcPicture;
+	CStatic* m_pDstPicture;
+	
+	BOOL SaveBitmapToFile(HBITMAP hBitmap, LPCTSTR lpszFileName, int nFormat);
+};
+
+void CImageConvertDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialogEx::DoDataExchange(pDX);
+}
+
+BEGIN_MESSAGE_MAP(CImageConvertDlg, CDialogEx)
+	ON_BN_CLICKED(IDC_BUTTON_JPG, &CImageConvertDlg::OnBnClickedConvertJpg)
+	ON_BN_CLICKED(IDC_BUTTON_PNG, &CImageConvertDlg::OnBnClickedConvertPng)
+	ON_BN_CLICKED(IDCANCEL, &CImageConvertDlg::OnBnClickedCancel)
+END_MESSAGE_MAP()
+
+BOOL CImageConvertDlg::SaveBitmapToFile(HBITMAP hBitmap, LPCTSTR lpszFileName, int nFormat)
+{
+	CImage image;
+	image.Attach(hBitmap);
+	
+	// 设置背景透明（如果需要）
+	image.SetTransparentColor(image.GetPixel(0, 0));
+	
+	HRESULT hr;
+	if (nFormat == 0) // JPG
+	{
+		hr = image.Save(lpszFileName, Gdiplus::ImageFormatJPEG);
+	}
+	else // PNG
+	{
+		hr = image.Save(lpszFileName, Gdiplus::ImageFormatPNG);
+	}
+	
+	image.Detach();
+	return SUCCEEDED(hr);
+}
+
+void CImageConvertDlg::OnBnClickedConvertJpg()
+{
+	// 加载源图片
+	m_srcBitmap.LoadBitmap(IDB_BITMAP1);
+	
+	// 保存为JPG格式
+	CString strPath = _T("./converted_image.jpg");
+	if (SaveBitmapToFile((HBITMAP)m_srcBitmap, strPath, 0))
+	{
+		// 显示转换后的图片
+		m_pDstPicture = (CStatic*)GetDlgItem(IDC_STATIC_DST);
+		m_pDstPicture->ModifyStyle(0xf, SS_BITMAP | SS_CENTERIMAGE);
+		
+		CImage img;
+		img.Load(strPath);
+		HBITMAP hBmp = img.Detach();
+		m_pDstPicture->SetBitmap(hBmp);
+	}
+}
+
+void CImageConvertDlg::OnBnClickedConvertPng()
+{
+	// 加载源图片
+	m_srcBitmap.LoadBitmap(IDB_BITMAP1);
+	
+	// 保存为PNG格式
+	CString strPath = _T("./converted_image.png");
+	if (SaveBitmapToFile((HBITMAP)m_srcBitmap, strPath, 1))
+	{
+		// 显示转换后的图片
+		m_pDstPicture = (CStatic*)GetDlgItem(IDC_STATIC_DST);
+		m_pDstPicture->ModifyStyle(0xf, SS_BITMAP | SS_CENTERIMAGE);
+		
+		CImage img;
+		img.Load(strPath);
+		HBITMAP hBmp = img.Detach();
+		m_pDstPicture->SetBitmap(hBmp);
+	}
+}
+
+void CImageConvertDlg::OnBnClickedCancel()
+{
+	CDialogEx::OnCancel();
+}
+
+// 主界面转换按钮点击处理
+void CMFCApplication2Dlg::OnBnClickedConvertImage()
+{
+	CImageConvertDlg dlg;
+	dlg.DoModal();
 }
 
