@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2.h: PROJECT_NAME 应用程序的主头文件
 //
 
@@ -25,6 +25,8 @@ public:
 	virtual BOOL InitInstance();
 
 // 实现
+private:
+	ULONG_PTR m_gdiplusToken; // GDI+令牌
 
 	DECLARE_MESSAGE_MAP()
 };

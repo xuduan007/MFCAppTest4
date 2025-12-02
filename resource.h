@@ -17,9 +17,17 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1002
+#define _APS_NEXT_CONTROL_VALUE         1005
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
+
+// 图片转换对话框资源ID
+#define IDD_IMAGE_CONVERT_DIALOG        130
+#define IDC_STATIC_ORIGINAL_IMAGE        1003
+#define IDC_STATIC_CONVERTED_IMAGE       1004
+#define IDC_BUTTON_CONVERT_TO_JPG        1005
+#define IDC_BUTTON_CONVERT_TO_PNG        1006
+#define IDC_BUTTON3                        1007
