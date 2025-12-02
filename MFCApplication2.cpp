@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2.cpp: 定义应用程序的类行为。
 //
 
@@ -6,6 +6,11 @@
 #include "framework.h"
 #include "MFCApplication2.h"
 #include "MFCApplication2Dlg.h"
+
+// 添加GDI+支持
+#include <gdiplus.h>
+using namespace Gdiplus;
+#pragma comment(lib, "gdiplus.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +45,10 @@ CMFCApplication2App theApp;
 
 BOOL CMFCApplication2App::InitInstance()
 {
+	// 初始化GDI+
+	GdiplusStartupInput gdiplusStartupInput;
+	GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, nullptr);
+
 	// 如果应用程序存在以下情况，Windows XP 上需要 InitCommonControlsEx()
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
 	//则需要 InitCommonControlsEx()。  否则，将无法创建窗口。
@@ -95,6 +104,9 @@ BOOL CMFCApplication2App::InitInstance()
 	{
 		delete pShellManager;
 	}
+
+	// 释放GDI+资源
+	GdiplusShutdown(m_gdiplusToken);
 
 #if !defined(_AFXDLL) && !defined(_AFX_NO_MFC_CONTROLS_IN_DIALOGS)
 	ControlBarCleanUp();
