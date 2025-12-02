@@ -1,4 +1,4 @@
-﻿
+
 // MFCApplication2.cpp: 定义应用程序的类行为。
 //
 
@@ -103,5 +103,15 @@ BOOL CMFCApplication2App::InitInstance()
 	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
 	//  而不是启动应用程序的消息泵。
 	return FALSE;
+}
+
+// CMFCApplication2App 退出
+
+int CMFCApplication2App::ExitInstance()
+{
+	// 关闭 GDI+
+	GdiplusShutdown(m_gdiplusToken);
+
+	return CWinApp::ExitInstance();
 }
 
